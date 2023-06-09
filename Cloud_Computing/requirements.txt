@@ -1,0 +1,13 @@
+firebase-admin==6.1.0
+Flask==2.2.5
+PyMySQL==1.0.3
+python-dotenv==0.21.1
+requests==2.31.0
+gunicorn==20.1.0
+Flask-Mail==0.9.1
+SQLAlchemy==1.3.8
+matplotlib==3.4.3
+tensorflow==2.11.0
+numpy==1.23.5
+tflite==2.10.0
+Pillow==8.3.2
