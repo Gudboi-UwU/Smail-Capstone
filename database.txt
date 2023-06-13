@@ -1,0 +1,32 @@
+# For making data_barang table
+# Untuk membuat tabel data_barang
+
+CREATE TABLE data_barang (
+  id_barang INT AUTO_INCREMENT PRIMARY KEY,
+  nama VARCHAR(255),
+  harga DECIMAL(10, 2)
+);
+
+
+# For making penjualan table
+# Untuk membuat tabel penjualan
+
+CREATE TABLE penjualan (
+  id_penjualan INT AUTO_INCREMENT PRIMARY KEY,
+  tanggal DATE,
+  total_keseluruhan DECIMAL(10, 2)
+);
+
+
+For making detail_penjualan table
+# Untuk membuat tabel detail_penjualan
+
+CREATE TABLE detail_penjualan (
+  id_detail INT AUTO_INCREMENT PRIMARY KEY,
+  id_penjualan INT,
+  id_barang INT,
+  jumlah INT,
+  total_barang DECIMAL(10, 2),
+  FOREIGN KEY (id_penjualan) REFERENCES penjualan(id_penjualan),
+  FOREIGN KEY (id_barang) REFERENCES data_barang(id_barang)
+);
