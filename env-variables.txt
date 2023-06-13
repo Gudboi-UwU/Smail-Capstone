@@ -1,8 +1,14 @@
+# Environtment Variables for Cloud Run
+# Recommended to set up the variables directly into Cloud Run
+
 # Konfigurasi koneksi
 # SQL Connection Configuration
-
 
 CLOUD_SQL_USERNAME = 'your database username'
 CLOUD_SQL_PASSWORD = 'your database user password'
 CLOUD_SQL_DATABASE_NAME = 'your database name'
 CLOUD_SQL_CONNECTION_NAME = 'your connection name'
+
+#Firebase API KEY
+
+env_firebase_web_api_key = 'your firebase web api key'
