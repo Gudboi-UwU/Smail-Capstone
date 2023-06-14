@@ -28,6 +28,7 @@ db_user = os.environ.get('CLOUD_SQL_USERNAME')
 db_password = os.environ.get('CLOUD_SQL_PASSWORD')
 db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
 db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
+db_public_ip = os.environ.get('CLOUD_SQL_PUBLIC_IP')
 
 # Konfigurasi Firebase
 main_dir = os.path.dirname(os.path.abspath(__file__))
@@ -122,14 +123,14 @@ def firebase_login():
 # Fungsi untuk melakukan koneksi terhadap Cloud SQL
 def make_connection():
 
-    if os.environ.get('GAE_ENV') == 'standard':
+    if os.environ.get('GAE_ENV') == 'standard': #Awalnya untuk app engine
         
         unix_socket = '/cloudsql/{}'.format(db_connection_name)
         cnx = pymysql.connect(user=db_user, password=db_password,
                               unix_socket=unix_socket, db=db_name)
     else:
 
-        host = '34.128.82.5'
+        host = db_public_ip
         cnx = pymysql.connect(user=db_user, password=db_password,
                               host=host, db=db_name)
 
@@ -145,15 +146,15 @@ def get_all_barang():
         sql = "SELECT * FROM data_barang"
         cursor.execute(sql)
 
-        data_barang = cursor.fetchall()
+        all_barang = cursor.fetchall()
 
         cursor.close()
         cnx.close()
 
         data_barang = []
-        for row in data_barang:
+        for row in all_barang:
             barang = {
-                'id': row[0],
+                'id_barang': row[0],
                 'nama_barang': row[1],
                 'harga': row[2]
             }
@@ -168,12 +169,12 @@ def get_all_barang():
     
 
 # Endopint /barang/id_barang untuk mendapatkan salah satu barang dari Cloud SQL
-@app.route('/barang/<int:id>', methods=['GET'])
+@app.route('/barang/<string:id>', methods=['GET'])
 def get_barang_by_id(id):
     try:
         cnx = make_connection()
         cursor = cnx.cursor()
-        sql = f"SELECT * FROM data_barang WHERE id = {id}"
+        sql = f"SELECT * FROM data_barang WHERE id_barang = {id}"
         cursor.execute(sql)
 
         barang = cursor.fetchone()
@@ -205,7 +206,7 @@ def tambah_penjualan():
      
         sql = "INSERT INTO penjualan (tanggal, total_keseluruhan) VALUES (%s, %s)"
         cursor.execute(sql, (tanggal, total_keseluruhan))
-        id_penjualan = cursor.lastrowid
+        id_penjualan = cursor.lastrowid #Mendapatkan id_penjualan yang terakhir dimasukkan
         
         for barang in daftar_barang:
             id_barang = barang['id_barang']
@@ -215,7 +216,7 @@ def tambah_penjualan():
             insert_detail_penjualan_query = "INSERT INTO detail_penjualan (id_penjualan, id_barang, jumlah, total_barang) VALUES (%s, %s, %s, %s)"
             cursor.execute(insert_detail_penjualan_query, (id_penjualan, id_barang, jumlah, total_barang))
         
-        cnx.commit()
+        cnx.commit() 
         cursor.close()
         cnx.close()
 
