@@ -2,8 +2,8 @@
 # Untuk membuat tabel data_barang
 
 CREATE TABLE data_barang (
-  id_barang INT AUTO_INCREMENT PRIMARY KEY,
-  nama VARCHAR(255),
+  id_barang VARCHAR (10) PRIMARY KEY,
+  nama VARCHAR(100),
   harga DECIMAL(10, 2)
 );
 
@@ -24,7 +24,7 @@ For making detail_penjualan table
 CREATE TABLE detail_penjualan (
   id_detail INT AUTO_INCREMENT PRIMARY KEY,
   id_penjualan INT,
-  id_barang INT,
+  id_barang VARCHAR (10),
   jumlah INT,
   total_barang DECIMAL(10, 2),
   FOREIGN KEY (id_penjualan) REFERENCES penjualan(id_penjualan),
