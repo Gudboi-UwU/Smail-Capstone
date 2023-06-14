@@ -174,7 +174,7 @@ def get_barang_by_id(id):
     try:
         cnx = make_connection()
         cursor = cnx.cursor()
-        sql = f"SELECT * FROM data_barang WHERE id_barang = {id}"
+        sql = f"SELECT * FROM data_barang WHERE id_barang = '{id}'"
         cursor.execute(sql)
 
         barang = cursor.fetchone()
