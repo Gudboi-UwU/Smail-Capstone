@@ -41,12 +41,12 @@ Smail is a user-friendly mobile application that aims to revolutionize the tradi
 We understand the unique challenges faced by UMKM owners, particularly those with limited budgets. Smail is our answer to these challenges, providing an affordable, efficient, and user-friendly cash register solution.
 
 ## Documentation
-### Machine Learning
-<a href="">Machine Learning Documentation</a>
-
 ### Cloud Computing
 <a href="https://github.com/Gudboi-UwU/Smail-Capstone/blob/058680fa8bf50f48365bf42369e36ae7f08b0cb0/Cloud_Computing/README.md">Cloud Computing Documentation</a>
 
 ### Mobile Development
-<a href="">Mobile Development Documentation</a>
+<a href="https://github.com/Gudboi-UwU/Smail-Capstone/blob/a76ef3d26eeac5c62b00775a7732034d332d10fb/Mobile%20Development/README.md">Mobile Development Documentation</a>
+
+### Machine Learning
+<a href="">Machine Learning Documentation</a>
 
