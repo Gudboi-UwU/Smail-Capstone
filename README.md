@@ -9,7 +9,7 @@
 
 ## Team ID : C23-PR507
                    
-<p align="center"><img src="Gambar/2.20%team.JPG"></p>
+<p align="center"><img src="/Gambar/2.team.JPG"></p>
 
 <br>
 
